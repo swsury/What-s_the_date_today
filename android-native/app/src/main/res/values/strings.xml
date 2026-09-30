@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">며칠이지?</string>
+    <string name="widget_description">홈 화면에 D-day를 표시합니다</string>
+    <string name="widget_style1_description">1x1 미니 위젯</string>
+    <string name="widget_style2_description">3x1 가로형 컴팩트 위젯</string>
+    <string name="widget_style3_description">2x2 기본 위젯</string>
+    <string name="widget_style1_transparent_description">1x1 투명 미니 위젯</string>
+    <string name="widget_style2_transparent_description">3x1 투명 가로형 컴팩트 위젯</string>
+    <string name="widget_style3_transparent_description">2x2 투명 기본 위젯</string>
+</resources>

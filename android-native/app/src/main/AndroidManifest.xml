@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ========================= -->
+    <!-- 앱 권한 설정 -->
+    <!-- ========================= -->
+    <!-- 인터넷 사용 권한 (API 호출, 데이터 동기화 등) -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 네트워크 상태 확인 (온라인/오프라인 체크) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DdayApp"
+        tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/actions" />
+        <!-- ========================= -->
+        <!-- 메인 실행 Activity -->
+        <!-- ========================= -->
+        <!-- android:exported="true" : 외부(Intent)에서 실행 가능 -->
+        <!-- android:launchMode="singleTop" : 기존 인스턴스 재사용 (onNewIntent 사용) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.DdayApp">
+
+            <!-- 앱 실행 시 시작되는 Activity 정의 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- ===================================================== -->
+        <!-- 위젯 구성 구조 설명 : (ConfigActivity + AppWidgetProvider) 한 쌍 -->
+        <!-- ===================================================== -->
+        <!-- ========================= -->
+        <!-- 스타일 1 (1x1 미니 위젯) -->
+        <!-- ========================= -->
+        <!-- 위젯 추가 시 실행되는 설정 화면 -->
+        <activity
+            android:name=".widget.DdayStyle1WidgetConfigActivity"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.DdayApp"> <!-- 독립 Task로 실행 (뒤로가기 시 앱과 분리) -->
+            <intent-filter>
+
+                <!-- 위젯 설정 Activity임을 명시 -->
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity> <!-- 실제 위젯 동작을 담당하는 Provider -->
+        <receiver
+            android:name=".widget.DdayStyle1WidgetProvider"
+            android:exported="true"
+            android:label="D-day 미니 (1x1)">
+            <intent-filter>
+
+                <!-- 위젯 업데이트 이벤트 수신 -->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <!-- 위젯의 크기, 레이아웃, 업데이트 주기 등의 설정 -->
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dday_style1_widget_info" />
+        </receiver> <!-- ========================= -->
+        <!-- 스타일 1 (1x1 미니 투명) -->
+        <!-- ========================= -->
+        <!-- 투명 스타일 설정 Activity -->
+        <activity
+            android:name=".widget.DdayStyle1TransparentWidgetConfigActivity"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.DdayApp">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity> <!-- 투명 위젯 Provider -->
+        <receiver
+            android:name=".widget.DdayStyle1TransparentWidgetProvider"
+            android:exported="true"
+            android:label="D-day 미니 투명 (1x1)">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dday_style1_transparent_widget_info" />
+        </receiver> <!-- ========================= -->
+        <!-- 스타일 2 (3x1 가로형 위젯) -->
+        <!-- ========================= -->
+        <activity
+            android:name=".widget.DdayStyle2WidgetConfigActivity"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.DdayApp">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".widget.DdayStyle2WidgetProvider"
+            android:exported="true"
+            android:label="D-day 가로형 (3x1)">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dday_style2_widget_info" />
+        </receiver> <!-- ========================= -->
+        <!-- 스타일 2 (3x1 가로형 투명) -->
+        <!-- ========================= -->
+        <activity
+            android:name=".widget.DdayStyle2TransparentWidgetConfigActivity"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.DdayApp">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".widget.DdayStyle2TransparentWidgetProvider"
+            android:exported="true"
+            android:label="D-day 가로형 투명 (3x1)">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dday_style2_transparent_widget_info" />
+        </receiver> <!-- ========================= -->
+        <!-- 스타일 3 (2x2 기본 위젯) -->
+        <!-- ========================= -->
+        <activity
+            android:name=".widget.DdayStyle3WidgetConfigActivity"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.DdayApp">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".widget.DdayStyle3WidgetProvider"
+            android:exported="true"
+            android:label="D-day 기본 (2x2)">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dday_style3_widget_info" />
+        </receiver> <!-- ========================= -->
+        <!-- 스타일 3 (2x2 기본 투명) -->
+        <!-- ========================= -->
+        <activity
+            android:name=".widget.DdayStyle3TransparentWidgetConfigActivity"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.DdayApp">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".widget.DdayStyle3TransparentWidgetProvider"
+            android:exported="true"
+            android:label="D-day 기본 투명 (2x2)">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/dday_style3_transparent_widget_info" />
+        </receiver>
+    </application>
+
+</manifest>

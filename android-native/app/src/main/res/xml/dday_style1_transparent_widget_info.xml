@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="40dp"
+    android:minHeight="40dp"
+    android:targetCellWidth="1"
+    android:targetCellHeight="1"
+    android:minResizeWidth="40dp"
+    android:minResizeHeight="40dp"
+    android:updatePeriodMillis="1800000"
+    android:initialLayout="@layout/widget_dday_style1_transparent"
+    android:previewLayout="@layout/widget_dday_style1_transparent"
+    android:configure="com.example.ddayapp.widget.DdayStyle1TransparentWidgetConfigActivity"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:description="@string/widget_style1_transparent_description" />
+
+    <!-- ===================================================== -->
+    <!-- App Widget Provider 설정 파일 (Style1: 1x1 투명 위젯) -->
+    <!-- 역할: 홈 화면에 표시될 위젯의 기본 속성 정의 / 크기, 업데이트 주기, 초기 레이아웃, 설정 Activity 연결 -->
+    <!-- ===================================================== -->
+
+    <!-- ========================= -->
+    <!-- 위젯 기본 크기 (최소 크기) -->
+
+    <!-- 위젯 최소 가로 크기 : android:minWidth="40dp"-->
+    <!-- 위젯 최소 세로 크기 : android:minHeight="40dp" -->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 기본 셀 크기 (런처 기준) -->
+
+    <!-- 가로 1칸 : android:targetCellWidth="1"-->
+    <!-- 세로 1칸 : android:targetCellHeight="1" -->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 리사이즈 최소 제한 -->
+
+    <!-- 리사이즈 시 최소 가로 : android:minResizeWidth="40dp" -->
+    <!-- 리사이즈 시 최소 세로 : android:minResizeHeight="40dp" -->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 자동 업데이트 주기 -->
+
+    <!-- 30분마다 자동 업데이트 (단위: 밀리초) : android:updatePeriodMillis="1800000" -->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 초기 UI 레이아웃 -->
+
+    <!-- 위젯이 처음 추가될 때 표시되는 레이아웃 : android:initialLayout="@layout/widget_dday_style1_transparent" -->
+    <!-- 위젯 선택 화면에서 보이는 미리보기 UI : android:previewLayout="@layout/widget_dday_style1_transparent" -->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 위젯 설정 화면 연결 -->
+
+    <!-- 위젯을 추가할 때 실행되는 설정 Activity (D-day 선택 화면 등) : android:configure="com.example.ddayapp.widget.DdayStyle1TransparentWidgetConfigActivity"-->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 리사이즈 가능 방향 -->
+
+    <!-- 가로/세로 모두 크기 조절 가능 : android:resizeMode="horizontal|vertical" -->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 표시 위치 -->
+
+    <!-- 홈 화면에서 사용되는 위젯 : android:widgetCategory="home_screen" -->
+    <!-- ========================= -->
+
+    <!-- ========================= -->
+    <!-- 위젯 설명 -->
+
+    <!-- 위젯 선택 화면에서 보여지는 설명 : android:description="@string/widget_style1_transparent_description" -->
+    <!-- ========================= -->
