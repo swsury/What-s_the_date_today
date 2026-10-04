@@ -12,14 +12,14 @@ import androidx.core.view.WindowCompat
 
 // 테마 설정
 private val LightColorScheme = lightColorScheme(
-    primary = DdayTeal,
-    secondary = DdayBlue,
-    tertiary = Pink40,
+    primary = BasicPrimary,
+    secondary = BasicSecondary,
+    tertiary = BasicTertiary,
     background = BackgroundGray,
-    surface = androidx.compose.ui.graphics.Color.White,
-    onPrimary = androidx.compose.ui.graphics.Color.White,
-    onSecondary = androidx.compose.ui.graphics.Color.White,
-    onTertiary = androidx.compose.ui.graphics.Color.White,
+    surface = White,
+    onPrimary = White,
+    onSecondary = White,
+    onTertiary = White,
     onBackground = TextPrimary,
     onSurface = TextPrimary
 )

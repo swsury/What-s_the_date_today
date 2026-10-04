@@ -16,14 +16,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 
 import com.example.ddayapp.data.DDay
-import com.example.ddayapp.ui.theme.toComposeColor
+import com.example.ddayapp.ui.theme.*
 import com.example.ddayapp.utils.DateCalculator
 import java.util.Calendar
 
@@ -49,11 +48,9 @@ fun AddEditDialog(
     var date by remember { mutableStateOf(dday?.date ?: DateCalculator.getTodayString()) }
 
     // 색상 설정
-    var selectedColor by remember { mutableStateOf(dday?.color ?: "#468BD7") }
-    val colors = listOf(
-        "#468BD7", "#218efd", "#ff6b6b",
-        "#a855f7", "#f59e0b", "#10b981"
-    )
+    var selectedColor by remember {
+        mutableStateOf(dday?.color?.toComposeColor() ?: BasicPrimary)
+    }
 
     // 제외일 설정
     var excludePublicHolidays by remember { mutableStateOf(dday?.excludePublicHolidays ?: false) } // 공휴일 제외
@@ -89,7 +86,7 @@ fun AddEditDialog(
                 .wrapContentHeight()
                 .padding(16.dp),
             shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
+            colors = CardDefaults.cardColors(containerColor = White )
         ) {
             Column(
                 modifier = Modifier
@@ -119,7 +116,7 @@ fun AddEditDialog(
 
                 // 라벨 명
 
-                Text("라벨", fontSize = 14.sp, color = Color(0xFF666666))
+                Text("라벨", fontSize = 14.sp, color = TextSecondary)
                 Spacer(Modifier.height(8.dp))
                 OutlinedTextField(
                     value = labelTitle,
@@ -133,7 +130,7 @@ fun AddEditDialog(
 
                 // 디데이 명
 
-                Text("제목", fontSize = 14.sp, color = Color(0xFF666666))
+                Text("제목", fontSize = 14.sp, color = TextSecondary)
                 Spacer(Modifier.height(8.dp))
                 OutlinedTextField(
                     value = title,
@@ -147,7 +144,7 @@ fun AddEditDialog(
 
                 // 목표 날짜 입력
 
-                Text("날짜", fontSize = 14.sp, color = Color(0xFF666666))
+                Text("날짜", fontSize = 14.sp, color = TextSecondary)
                 Spacer(Modifier.height(8.dp))
                 OutlinedTextField(
                     value = date,
@@ -159,8 +156,8 @@ fun AddEditDialog(
                     placeholder = { Text("yyyy-MM-dd") },
                     singleLine = true,
                     colors = OutlinedTextFieldDefaults.colors(
-                        disabledTextColor = Color.Black,
-                        disabledBorderColor = Color.Gray
+                        disabledTextColor = Black,
+                        disabledBorderColor = Gray
                     )
                 )
 
@@ -201,7 +198,7 @@ fun AddEditDialog(
 
                 // 휴일 제외 옵션 선택
 
-                Text("휴일 제외", fontSize = 14.sp, color = Color(0xFF666666))
+                Text("휴일 제외", fontSize = 14.sp, color = TextSecondary)
 
                 // 공휴일 제외 선택
 
@@ -211,13 +208,18 @@ fun AddEditDialog(
                 ) {
                     Checkbox(
                         checked = excludePublicHolidays,
-                        onCheckedChange = { excludePublicHolidays = it }
+                        onCheckedChange = { excludePublicHolidays = it },
+                        colors = CheckboxDefaults.colors(
+                            checkedColor = BasicTertiary, // 체크 상태의 배경/테두리 색상
+                            uncheckedColor = BasicTertiary,                // 미체크 상태의 테두리 색상
+                            checkmarkColor = White                    // 체크 마크(V 표시) 색상
+                        )
                     )
                     Spacer(Modifier.width(8.dp))
                     Text(
                         text = "공휴일 제외 (${publicHolidays.size}개)",
                         fontSize = 14.sp,
-                        color = Color(0xFFAACBE0),
+                        color = BasicTertiary,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -232,13 +234,18 @@ fun AddEditDialog(
                 ) {
                     Checkbox(
                         checked = excludeCustomDays,
-                        onCheckedChange = { excludeCustomDays = it }
+                        onCheckedChange = { excludeCustomDays = it },
+                        colors = CheckboxDefaults.colors(
+                                checkedColor = BasicSecondary, // 체크 상태의 배경/테두리 색상
+                                uncheckedColor = BasicSecondary,                // 미체크 상태의 테두리 색상
+                                checkmarkColor = White                    // 체크 마크(V 표시) 색상
+                        )
                     )
                     Spacer(Modifier.width(8.dp))
                     Text(
                         text = "휴무일 제외 (${customDays.size}개)",
                         fontSize = 14.sp,
-                        color = Color(0xFFFF6B6B),
+                        color = BasicSecondary,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -257,7 +264,7 @@ fun AddEditDialog(
                             "모든 날짜를 포함합니다"
                     },
                     fontSize = 12.sp,
-                    color = Color(0xFF999999),
+                    color = TextGray,
                     modifier = Modifier.padding(top = 8.dp, start = 8.dp)
                 )
 
@@ -265,7 +272,7 @@ fun AddEditDialog(
 
                 // 제외 요일 선택
 
-                Text("선택 요일 제외", fontSize = 14.sp, color = Color(0xFF666666))
+                Text("선택 요일 제외", fontSize = 14.sp, color = TextSecondary)
                 Spacer(Modifier.height(8.dp))
 
                 // 버튼 형태로 제외 요일 선택
@@ -285,10 +292,10 @@ fun AddEditDialog(
                                     .aspectRatio(1f)
                                     .background(
                                         color = when {
-                                            dayOfWeek == 1 && excludedWeekdays.contains(dayOfWeek) -> Color(0xFFFF5252) // 일요일 선택
-                                            dayOfWeek == 7 && excludedWeekdays.contains(dayOfWeek) -> Color(0xFF2196F3) // 토요일 선택
-                                            excludedWeekdays.contains(dayOfWeek) -> Color(0xFF26A69A) // 평일 선택
-                                            else -> Color(0xFFE0E0E0) // 미선택
+                                            dayOfWeek == 1 && excludedWeekdays.contains(dayOfWeek) -> BasicSecondary // 일요일 선택
+                                            dayOfWeek == 7 && excludedWeekdays.contains(dayOfWeek) -> BasicTertiary // 토요일 선택
+                                            excludedWeekdays.contains(dayOfWeek) -> BasicPrimary // 평일 선택
+                                            else -> BasicQuinary // 미선택
                                         },
                                         shape = CircleShape
                                     )
@@ -306,9 +313,9 @@ fun AddEditDialog(
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = if (excludedWeekdays.contains(dayOfWeek))
-                                        Color.White
+                                        White
                                     else
-                                        Color(0xFF999999)
+                                        TextGray
                                 )
                             }
                         }
@@ -326,10 +333,10 @@ fun AddEditDialog(
                                     .aspectRatio(1f)
                                     .background(
                                         color = when {
-                                            dayOfWeek == 1 && excludedWeekdays.contains(dayOfWeek) -> Color(0xFFFF5252) // 일요일 선택
-                                            dayOfWeek == 7 && excludedWeekdays.contains(dayOfWeek) -> Color(0xFF2196F3) // 토요일 선택
-                                            excludedWeekdays.contains(dayOfWeek) -> Color(0xFF26A69A) // 평일 선택
-                                            else -> Color(0xFFE0E0E0) // 미선택
+                                            dayOfWeek == 1 && excludedWeekdays.contains(dayOfWeek) -> BasicSecondary // 일요일 선택
+                                            dayOfWeek == 7 && excludedWeekdays.contains(dayOfWeek) -> BasicTertiary // 토요일 선택
+                                            excludedWeekdays.contains(dayOfWeek) -> BasicPrimary // 평일 선택
+                                            else -> BasicQuinary // 미선택
                                         },
                                         shape = CircleShape
                                     )
@@ -347,9 +354,9 @@ fun AddEditDialog(
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold,
                                     color = if (excludedWeekdays.contains(dayOfWeek))
-                                        Color.White
+                                        White
                                     else
-                                        Color(0xFF999999)
+                                        TextGray
                                 )
                             }
                         }
@@ -372,30 +379,29 @@ fun AddEditDialog(
                         }
                     },
                     fontSize = 12.sp,
-                    color = Color(0xFF999999),
+                    color = TextGray,
                     modifier = Modifier.padding(top = 8.dp, start = 4.dp)
                 )
 
                 Spacer(Modifier.height(16.dp))
 
                 // 디데이 카드 색상 설정
-                // 색상 값은 colors 함수에 저장
 
-                Text("색상", fontSize = 14.sp, color = Color(0xFF666666))
+                Text("색상", fontSize = 14.sp, color = TextSecondary)
                 Spacer(Modifier.height(8.dp))
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    colors.forEach { color ->
+                    ddayColorPalette.forEach { color ->
                         Box(
                             modifier = Modifier
                                 .size(36.dp)
                                 .clip(CircleShape)
-                                .background(color.toComposeColor())
+                                .background(color)
                                 .border(
                                     width = if (color == selectedColor) 3.dp else 0.dp,
-                                    color = Color.Black,
+                                    color = TextBlack,
                                     shape = CircleShape
                                 )
                                 .clickable { selectedColor = color }
@@ -419,7 +425,7 @@ fun AddEditDialog(
                                 labelTitle = labelTitle,
                                 title = title,
                                 date = date,
-                                color = selectedColor,
+                                color = selectedColor.toHexString(), // Color -> HEX String 변환 후 저장
                                 excludePublicHolidays = excludePublicHolidays,
                                 excludeCustomDays = excludeCustomDays,
                                 excludedWeekdays = excludedWeekdays
@@ -430,12 +436,12 @@ fun AddEditDialog(
                         .fillMaxWidth()
                         .height(48.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = selectedColor.toComposeColor()
+                        containerColor = selectedColor
                     )
                 ) {
                     Text(
                         text = if (dday == null) "추가" else "수정",
-                        color = Color.White,
+                        color = White,
                         fontSize = 16.sp
                     )
                 }

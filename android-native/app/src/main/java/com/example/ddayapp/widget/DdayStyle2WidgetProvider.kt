@@ -12,9 +12,14 @@ import com.example.ddayapp.R
 import com.example.ddayapp.data.PrefsHelper
 import com.example.ddayapp.utils.DateCalculator
 import android.graphics.Color
+import android.graphics.Color as AndroidColor
 import android.util.Log
+import com.example.ddayapp.ui.theme.*
+import androidx.compose.ui.graphics.toArgb
+
 
 class DdayStyle2WidgetProvider : AppWidgetProvider() {
+
 
     companion object {
         private const val TAG = "Style2Widget"
@@ -54,15 +59,15 @@ class DdayStyle2WidgetProvider : AppWidgetProvider() {
                         views.setTextViewText(R.id.widget_dday, ddayText)
                         views.setTextViewText(R.id.widget_date, dday.date)
 
-                        // 🔥 배경색 설정
-                        try {
-                            val color = Color.parseColor(dday.color)
-                            views.setInt(R.id.widget_background, "setBackgroundColor", color)
+                        // 배경색 설정
+                        val backgroundColor = try {
+                            AndroidColor.parseColor(dday.color)
                         } catch (e: Exception) {
-                            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+                            BackgroundBlue.toArgb()
                         }
+                        views.setInt(R.id.widget_background, "setBackgroundColor", backgroundColor)
 
-                        // 🔥 위젯 클릭 시 해당 D-day 편집 화면 열기
+                        // 위젯 클릭 시 해당 D-day 편집 화면 열기
                         val intent = Intent(context, MainActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                             putExtra("dday_id", dday.id)
@@ -85,8 +90,8 @@ class DdayStyle2WidgetProvider : AppWidgetProvider() {
                     // 위젯 설정이 안 된 경우
                     setDefaultContent(views)
                     setDefaultClickIntent(context, views, appWidgetId)
-                }
 
+                }
                 appWidgetManager.updateAppWidget(appWidgetId, views)
 
             } catch (e: Exception) {
@@ -101,7 +106,7 @@ class DdayStyle2WidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_date, "터치하여 설정")
 
             // 기본 배경색
-            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+            views.setInt(R.id.widget_background, "setBackgroundColor", BackgroundBlue.toArgb())
         }
 
         // 🔥 기본 클릭 시 메인 화면만 열기

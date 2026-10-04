@@ -17,6 +17,9 @@ import com.example.ddayapp.data.PrefsHelper
 import com.example.ddayapp.utils.DateCalculator
 import android.graphics.Color
 import android.util.Log
+import com.example.ddayapp.ui.theme.*
+import android.graphics.Color as AndroidColor
+import androidx.compose.ui.graphics.toArgb
 
 class DdayWidgetProvider :  AppWidgetProvider() {
 
@@ -79,7 +82,7 @@ class DdayWidgetProvider :  AppWidgetProvider() {
                             views.setInt(R.id.widget_background, "setBackgroundColor", color)
                         } catch (e:  Exception) {
                             Log.e(TAG, "Failed to parse color: ${dday.color}", e)
-                            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+                            views.setInt(R.id.widget_background, "setBackgroundColor", BasicPrimary.toArgb())
                         }
                     } else {
                         // D-day가 삭제된 경우
@@ -111,7 +114,7 @@ class DdayWidgetProvider :  AppWidgetProvider() {
         private fun setDefaultWidgetContent(views: RemoteViews, title: String, subtitle: String, style: Int) {
             views.setTextViewText(R.id.widget_title, title)
             views.setTextViewText(R.id.widget_dday, "")
-            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+            views.setInt(R.id.widget_background, "setBackgroundColor", BasicPrimary.toArgb())
 
             // 스타일 4는 라벨과 날짜가 숨겨져 있음
             if (style != 4) {

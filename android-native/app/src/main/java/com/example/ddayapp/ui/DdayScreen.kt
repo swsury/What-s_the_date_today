@@ -21,8 +21,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ddayapp.data.DDay
 import com.example.ddayapp.ui.components.*
-import com.example.ddayapp.ui.theme.BackgroundGray
 import com.example.ddayapp.viewmodel.DdayViewModel
+import com.example.ddayapp.ui.theme.*
+import android.graphics.Color as AndroidColor
+import androidx.compose.ui.graphics.toArgb
 
 // 전체 화면 관리 코드
 
@@ -102,7 +104,7 @@ fun DdayScreen(
                         text = "며칠이지?",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = White
                     )
                 },
                 actions = {
@@ -110,12 +112,12 @@ fun DdayScreen(
                         Icon(
                             imageVector = Icons.Default.Settings,
                             contentDescription = "설정",
-                            tint = Color.White
+                            tint = White
                         )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFFAACBE0)
+                    containerColor = BasicPrimary
                 )
             )
         },
@@ -126,8 +128,8 @@ fun DdayScreen(
                     editingDday = null
                     showAddDialog = true
                 },
-                containerColor = Color(0xFFAACBE0),
-                contentColor = Color.White
+                containerColor = BasicPrimary,
+                contentColor = White
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
@@ -158,13 +160,13 @@ fun DdayScreen(
                         text = "D-day가 없습니다",
                         fontSize = 20.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFF1B1C1F)
+                        color = TextPrimary
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "+ 버튼을 눌러 새로운 D-day를 추가하세요",
                         fontSize = 14.sp,
-                        color = Color(0xFF666666)
+                        color = TextSecondary
                     )
                 }
             } else {
@@ -244,7 +246,7 @@ fun DdayScreen(
                                         }
                                     },
                                 colors = CardDefaults.cardColors(
-                                    containerColor = Color(0xFFAACBE0).copy(alpha = 0.1f)
+                                    containerColor = BasicPrimary.copy(alpha = 0.1f)
                                 )
                             ) {
                                 Row(
@@ -261,14 +263,14 @@ fun DdayScreen(
                                         Icon(
                                             imageVector = Icons.Default.DragHandle,
                                             contentDescription = "드래그",
-                                            tint = Color(0xFFAACBE0),
+                                            tint = BasicPrimary,
                                             modifier = Modifier.size(20.dp)
                                         )
                                         Text(
                                             text = labelTitle,
                                             fontSize = 16.sp,
                                             fontWeight = FontWeight.Bold,
-                                            color = Color(0xFFAACBE0)
+                                            color = BasicPrimary
                                         )
                                     }
                                     Row(
@@ -278,7 +280,7 @@ fun DdayScreen(
                                         Text(
                                             text = "${ddaysInGroup.size}개",
                                             fontSize = 14.sp,
-                                            color = Color(0xFF999999)
+                                            color = TextGray
                                         )
                                         Icon(
                                             imageVector = if (isExpanded)
@@ -286,7 +288,7 @@ fun DdayScreen(
                                             else
                                                 Icons.Default.KeyboardArrowDown,
                                             contentDescription = if (isExpanded) "접기" else "펼치기",
-                                            tint = Color(0xFFAACBE0)
+                                            tint = BasicPrimary
                                         )
                                     }
                                 }

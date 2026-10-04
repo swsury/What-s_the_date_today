@@ -13,6 +13,9 @@ import com.example.ddayapp.data.PrefsHelper
 import com.example.ddayapp.utils.DateCalculator
 import android.graphics.Color
 import android.util.Log
+import com.example.ddayapp.ui.theme.*
+import android.graphics.Color as AndroidColor
+import androidx.compose.ui.graphics.toArgb
 
 class DdayStyle3WidgetProvider : AppWidgetProvider() {
 
@@ -54,15 +57,15 @@ class DdayStyle3WidgetProvider : AppWidgetProvider() {
                         views.setTextViewText(R.id.widget_dday, ddayText)
                         views.setTextViewText(R.id.widget_date, dday.date)
 
-                        // 🔥 배경색 설정
+                        // 배경색 설정
                         try {
                             val color = Color.parseColor(dday.color)
                             views.setInt(R.id.widget_background, "setBackgroundColor", color)
                         } catch (e: Exception) {
-                            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+                            views.setInt(R.id.widget_background, "setBackgroundColor", BasicPrimary.toArgb())
                         }
 
-                        // 🔥 위젯 클릭 시 해당 D-day 편집 화면 열기
+                        // 위젯 클릭 시 해당 D-day 편집 화면 열기
                         val intent = Intent(context, MainActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                             putExtra("dday_id", dday.id)
@@ -101,10 +104,10 @@ class DdayStyle3WidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_date, "터치하여 설정")
 
             // 기본 배경색
-            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+            views.setInt(R.id.widget_background, "setBackgroundColor", BasicPrimary.toArgb())
         }
 
-        // 🔥 기본 클릭 시 메인 화면만 열기
+        //기본 클릭 시 메인 화면만 열기
         private fun setDefaultClickIntent(context: Context, views: RemoteViews, appWidgetId: Int) {
             val intent = Intent(context, MainActivity:: class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP

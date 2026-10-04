@@ -29,7 +29,7 @@
                 android:layout_marginBottom="1dp"
                 android:alpha="0.9"
                 android:text="D-day"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/color_secondary"
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
@@ -41,7 +41,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="제목"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/color_secondary"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:alpha="0.8"
                 android:text="2026-02-12"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/color_secondary"
                 android:textSize="11sp" />
 
         </LinearLayout>
@@ -63,7 +63,7 @@
             android:layout_marginStart="1dp"
             android:paddingRight="8dp"
             android:text="D-30"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/color_secondary"
             android:textSize="32sp"
             android:textStyle="bold" />
 

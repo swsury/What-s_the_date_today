@@ -18,6 +18,9 @@ import androidx.compose.ui.unit.sp
 import com.example.ddayapp.data.DDay
 import com.example.ddayapp.ui.theme.toComposeColor
 import com.example.ddayapp.utils.DateCalculator
+import com.example.ddayapp.ui.theme.*
+import android.graphics.Color as AndroidColor
+import androidx.compose.ui.graphics.toArgb
 
 // 디데이 카드
 
@@ -54,7 +57,7 @@ fun DdayCard(
     Card(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = White),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column {
@@ -79,7 +82,7 @@ fun DdayCard(
                     // 라벨명
                     Text(
                         text = dday.labelTitle,
-                        color = Color.White,
+                        color = White,
                         fontSize = 12.sp
                     )
 
@@ -92,7 +95,7 @@ fun DdayCard(
                             Icon(
                                 imageVector = Icons.Default.MoreHoriz,
                                 contentDescription = "메뉴",
-                                tint = Color.White
+                                tint = White
                             )
                         }
 
@@ -119,7 +122,7 @@ fun DdayCard(
                             )
                             // 삭제
                             DropdownMenuItem(
-                                text = { Text("삭제", color = Color.Red) },
+                                text = { Text("삭제", color = BasicSecondary) },
                                 onClick = {
                                     showMenu = false
                                     onDelete()
@@ -165,13 +168,13 @@ fun DdayCard(
                     Icon(
                         imageVector = Icons.Default.CalendarToday,
                         contentDescription = null,
-                        tint = Color.Gray,
+                        tint = Gray,
                         modifier = Modifier.size(14.dp)
                     )
                     Text(
                         text = formattedDate,
                         fontSize = 12.sp,
-                        color = Color.Gray
+                        color = Gray
                     )
                 }
             }

@@ -23,7 +23,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:text="제목"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/color_secondary"
             android:textSize="8sp"
             android:textStyle="bold"
             android:visibility="visible" />
@@ -35,7 +35,7 @@
             android:layout_marginBottom="1dp"
             android:gravity="center_horizontal"
             android:text="D-30"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/color_secondary"
             android:textSize="20sp"
             android:textStyle="bold" />
 

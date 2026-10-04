@@ -20,6 +20,8 @@ import androidx.compose.ui.window.Dialog
 import com.example.ddayapp.data.Holiday
 import com.example.ddayapp.data.Settings
 import com.example.ddayapp.utils.DateCalculator
+import android.graphics.Color as AndroidColor
+import com.example.ddayapp.ui.theme.*
 import java.util.*
 
 // 휴일 설정
@@ -66,7 +68,7 @@ fun SettingsDialog(
                 .padding(16.dp),
             shape = RoundedCornerShape(16.dp),
             colors = CardDefaults.cardColors(
-                containerColor = Color.White
+                containerColor = White
             )
         ) {
             Column(
@@ -90,7 +92,7 @@ fun SettingsDialog(
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = "닫기",
-                            tint = Color.Gray
+                            tint = Gray
                         )
                     }
                 }
@@ -109,13 +111,13 @@ fun SettingsDialog(
                         text = "공휴일 (자동)",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFFAACBE0)
+                        color = BasicTertiary
                     )
 
                     Text(
                         text = "시스템 연도에 맞춰 자동으로 불러옵니다",
                         fontSize = 12.sp,
-                        color = Color(0xFF999999),
+                        color = TextGray,
                         modifier = Modifier.padding(top = 4.dp, bottom = 12.dp)
                     )
 
@@ -134,14 +136,14 @@ fun SettingsDialog(
                             if (isLoadingHolidays) {
                                 CircularProgressIndicator(
                                     modifier = Modifier.size(24.dp),
-                                    color = Color(0xFFAACBE0),
+                                    color = BasicTertiary,
                                     strokeWidth = 2.dp
                                 )
                             } else {
                                 Text(
                                     text = "불러온 공휴일이 없습니다",
                                     fontSize = 14.sp,
-                                    color = Color(0xFFBDBDBD)
+                                    color = TextGray
                                 )
                             }
                         }
@@ -150,7 +152,7 @@ fun SettingsDialog(
                         Text(
                             text = "등록된 공휴일 수 :  총 ${publicHolidays.size}개",
                             fontSize = 12.sp,
-                            color = Color(0xFF999999),
+                            color = TextGray,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(top = 4.dp, bottom = 8.dp)
                         )
@@ -160,7 +162,7 @@ fun SettingsDialog(
                                 .fillMaxWidth()
                                 .heightIn(max = 250.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = Color(0xFFF0F9F8)
+                                containerColor = BackgroundWhite
                             ),
                             shape = RoundedCornerShape(8.dp)
                         ) {
@@ -180,7 +182,7 @@ fun SettingsDialog(
                                             modifier = Modifier
                                                 .fillMaxWidth()
                                                 .background(
-                                                    color = Color.White,
+                                                    color = White,
                                                     shape = RoundedCornerShape(6.dp)
                                                 )
                                                 .padding(12.dp),
@@ -192,12 +194,12 @@ fun SettingsDialog(
                                                     text = holiday.name,
                                                     fontSize = 14.sp,
                                                     fontWeight = FontWeight.Bold,
-                                                    color = Color(0xFFAACBE0)
+                                                    color = BasicTertiary
                                                 )
                                                 Text(
                                                     text = displayDate,
                                                     fontSize = 12.sp,
-                                                    color = Color(0xFF666666)
+                                                    color = TextSecondary
                                                 )
                                             }
                                         }
@@ -213,13 +215,13 @@ fun SettingsDialog(
                         text = "휴무일 (수동 추가)",
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFFFF6B6B)
+                        color = BasicSecondary
                     )
 
                     Text(
                         text = "특정 날짜를 수동으로 추가하여 제외할 수 있습니다",
                         fontSize = 12.sp,
-                        color = Color(0xFF999999),
+                        color = TextGray,
                         modifier = Modifier.padding(top = 4.dp, bottom = 12.dp)
                     )
 
@@ -240,8 +242,8 @@ fun SettingsDialog(
                             singleLine = true,
                             shape = RoundedCornerShape(8.dp),
                             colors = OutlinedTextFieldDefaults.colors(
-                                disabledTextColor = Color.Black,
-                                disabledBorderColor = Color.Gray
+                                disabledTextColor = Black,
+                                disabledBorderColor = Gray
                             )
                         )
                         if (showDatePicker) {
@@ -277,17 +279,19 @@ fun SettingsDialog(
                         }
 
                         Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            modifier = Modifier.fillMaxWidth()
+                                .height(IntrinsicSize.Min),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             OutlinedTextField(
                                 value = newCustomName,
                                 onValueChange = { newCustomName = it },
-                                modifier = Modifier.weight(1f),
+                                modifier = Modifier.weight(1f)
+                                    .fillMaxHeight(),
                                 label = { Text("내용", fontSize = 14.sp) },
-                                placeholder = { Text("내용 (선택)", fontSize = 14.sp) },
                                 singleLine = true,
-                                shape = RoundedCornerShape(8.dp)
+                                shape = RoundedCornerShape(8.dp),
                             )
 
                             Button(
@@ -303,10 +307,12 @@ fun SettingsDialog(
                                         newCustomName = ""
                                     }
                                 },
+                                modifier = Modifier.fillMaxHeight(),
                                 colors = ButtonDefaults.buttonColors(
-                                    containerColor = Color(0xFFFF6B6B)
+                                    containerColor = BasicSecondary
                                 ),
-                                shape = RoundedCornerShape(8.dp)
+                                shape = RoundedCornerShape(8.dp),
+                                contentPadding = PaddingValues(horizontal = 16.dp)
                             ) {
                                 Text("추가", fontSize = 14.sp)
                             }
@@ -326,7 +332,7 @@ fun SettingsDialog(
                             Text(
                                 text = "등록된 휴무일이 없습니다",
                                 fontSize = 14.sp,
-                                color = Color(0xFFBDBDBD)
+                                color = TextGray
                             )
                         }
                     } else {
@@ -334,7 +340,7 @@ fun SettingsDialog(
                         Text(
                             text = "등록된 휴무일 수 : 총 ${customDays.size}개",
                             fontSize = 12.sp,
-                            color = Color(0xFF999999),
+                            color = TextGray,
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier.padding(top = 4.dp, bottom = 8.dp)
                         )
@@ -343,7 +349,7 @@ fun SettingsDialog(
                                 .fillMaxWidth()
                                 .heightIn(max = 250.dp),
                             colors = CardDefaults.cardColors(
-                                containerColor = Color(0xFFFFF5F5)
+                                containerColor = BackgroundRed
                             ),
                             shape = RoundedCornerShape(8.dp)
                         ) {
@@ -364,7 +370,7 @@ fun SettingsDialog(
                                             modifier = Modifier
                                                 .fillMaxWidth()
                                                 .background(
-                                                    color = Color.White,
+                                                    color = White,
                                                     shape = RoundedCornerShape(6.dp)
                                                 )
                                                 .padding(12.dp),
@@ -378,12 +384,12 @@ fun SettingsDialog(
                                                     text = holiday.name,
                                                     fontSize = 14.sp,
                                                     fontWeight = FontWeight.Bold,
-                                                    color = Color(0xFFFF6B6B)
+                                                    color = BasicSecondary
                                                 )
                                                 Text(
                                                     text = displayDate,
                                                     fontSize = 12.sp,
-                                                    color = Color(0xFF666666)
+                                                    color = TextSecondary
                                                 )
                                             }
 
@@ -396,7 +402,7 @@ fun SettingsDialog(
                                             ) {
                                                 Text(
                                                     "삭제",
-                                                    color = Color.Red,
+                                                    color = BasicSecondary,
                                                     fontSize = 14.sp
                                                 )
                                             }
@@ -425,13 +431,13 @@ fun SettingsDialog(
                         .fillMaxWidth()
                         .height(48.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFFAACBE0)
+                        containerColor = BasicPrimary
                     ),
                     shape = RoundedCornerShape(8.dp)
                 ) {
                     Text(
                         text = "저장",
-                        color = Color.White,
+                        color = White,
                         fontSize = 16.sp
                     )
                 }

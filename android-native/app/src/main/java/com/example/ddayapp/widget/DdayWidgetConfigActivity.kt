@@ -30,8 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 // 앱 내부 클래스
 import com.example.ddayapp.data.PrefsHelper
-import com.example.ddayapp.ui.theme.DdayAppTheme
-import com.example.ddayapp.ui.theme.toComposeColor
+import com.example.ddayapp.ui.theme.*
 import com.example.ddayapp.utils.DateCalculator
 
 // 위젯 추가 시 실행되는 설정 화면 Activity
@@ -154,7 +153,7 @@ fun WidgetConfigScreen(
                         text = "위젯에 표시할 D-day 선택",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.White
+                        color = White
                     )
                 },
                 // 왼쪽 닫기 버튼
@@ -163,13 +162,13 @@ fun WidgetConfigScreen(
                         Icon(
                             imageVector = Icons.Default.Close,
                             contentDescription = "취소",
-                            tint = Color.White
+                            tint = White
                         )
                     }
                 },
                 // 앱바 배경 색상
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFFAACBE0)
+                    containerColor = BasicPrimary
                 )
             )
         }
@@ -200,7 +199,7 @@ fun WidgetConfigScreen(
                 Text(
                     text = "앱에서 D-day를 먼저 추가해주세요",
                     fontSize = 14.sp,
-                    color = Color.Gray
+                    color = Gray
                 )
             }
         } else {
@@ -253,7 +252,7 @@ fun WidgetConfigScreen(
                             ) {
                                 Text(
                                     text = dday.labelTitle,
-                                    color = Color.White,
+                                    color = White,
                                     fontSize = 12.sp,
                                     fontWeight = FontWeight.Medium
                                 )
@@ -263,7 +262,7 @@ fun WidgetConfigScreen(
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .background(Color.White)
+                                    .background(White)
                                     .padding(16.dp)
                             ) {
                                 // D-day 제목
@@ -271,7 +270,7 @@ fun WidgetConfigScreen(
                                     text = dday.title,
                                     fontSize = 18.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF1B1C1F)
+                                    color = TextPrimary
                                 )
 
                                 Spacer(modifier = Modifier.height(8.dp))
@@ -294,7 +293,7 @@ fun WidgetConfigScreen(
                                     Text(
                                         text = dday.date,
                                         fontSize = 14.sp,
-                                        color = Color(0xFF666666)
+                                        color = TextSecondary
                                     )
                                 }
                             }

@@ -13,6 +13,9 @@ import com.example.ddayapp.data.PrefsHelper
 import com.example.ddayapp.utils.DateCalculator
 import android.util.Log
 import android.graphics.Color
+import com.example.ddayapp.ui.theme.*
+import android.graphics.Color as AndroidColor
+import androidx.compose.ui.graphics.toArgb
 
 // 1X1 투명 스타일 D-Day 위젯 Provider
 // 역할 : 위젯 UI 업데이트, D-Day 계산 및 표시, 클릭 이벤트 처리
@@ -77,8 +80,8 @@ class DdayStyle1TransparentWidgetProvider : AppWidgetProvider() {
                             views.setTextColor(R.id.widget_date, color) //날짜 색상
                         } catch (e: Exception) {
                             // 색상 파싱 실패 시 기본 색상 유지
-                            views.setTextColor(R.id.widget_label, Color.parseColor("#468BD7"))
-                            views.setTextColor(R.id.widget_dday, Color.parseColor("#468BD7"))
+                            views.setTextColor(R.id.widget_label, BasicPrimary.toArgb())
+                            views.setTextColor(R.id.widget_dday, BasicPrimary.toArgb())
                         }
 
                         // 위젯 클릭 시 해당 D-day 편집 화면 열기
@@ -122,10 +125,10 @@ class DdayStyle1TransparentWidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_date, "터치하여 설정")
 
             // 기본 텍스트 색상
-            views.setTextColor(R.id.widget_label, Color.parseColor("#468BD7"))
-            views.setTextColor(R.id.widget_dday, Color.parseColor("#468BD7"))
-            views.setTextColor(R.id.widget_title, Color.parseColor("#666666"))
-            views.setTextColor(R.id.widget_date, Color.parseColor("#468BD7"))
+            views.setTextColor(R.id.widget_label, BasicPrimary.toArgb())
+            views.setTextColor(R.id.widget_dday, BasicPrimary.toArgb())
+            views.setTextColor(R.id.widget_title, BasicPrimary.toArgb())
+            views.setTextColor(R.id.widget_date, BasicPrimary.toArgb())
         }
 
         // 기본 클릭 이벤트 (앱 메인 화면 이동)

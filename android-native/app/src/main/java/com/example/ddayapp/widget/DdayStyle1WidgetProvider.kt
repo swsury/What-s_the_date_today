@@ -13,6 +13,8 @@ import com.example.ddayapp.data.PrefsHelper
 import com.example.ddayapp.utils.DateCalculator
 import android.graphics.Color
 import android.util.Log
+import androidx.compose.ui.graphics.toArgb
+import com.example.ddayapp.ui.theme.BasicPrimary
 
 class DdayStyle1WidgetProvider : AppWidgetProvider() {
 
@@ -71,7 +73,7 @@ class DdayStyle1WidgetProvider : AppWidgetProvider() {
                             views.setInt(R.id.widget_background, "setBackgroundColor", color)
                         } catch (e: Exception) {
                             // 색상 파싱 실패 시 기본 색상 유지
-                            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+                            views.setInt(R.id.widget_background, "setBackgroundColor", BasicPrimary.toArgb())
                         }
 
                         // 위젯 클릭 시 해당 D-day 편집 화면 열기
@@ -115,7 +117,7 @@ class DdayStyle1WidgetProvider : AppWidgetProvider() {
             views.setTextViewText(R.id.widget_date, "터치하여 설정")
 
             // 기본 배경 색상
-            views.setInt(R.id.widget_background, "setBackgroundColor", Color.parseColor("#468BD7"))
+            views.setInt(R.id.widget_background, "setBackgroundColor", BasicPrimary.toArgb())
         }
 
         // 기본 클릭 이벤트 (앱 메인 화면 이동)
