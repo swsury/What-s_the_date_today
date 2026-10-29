@@ -32,8 +32,8 @@ android {
         // 타겟 Android 버전
         targetSdk = 36
         // 앱 버전 관리
-        versionCode = 2
-        versionName = "1.1"
+        versionCode = 4
+        versionName = "1.3"
         // 테스트 실행 Runner
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         // VectorDrawable 지원 설정 (하위 버전 호환)

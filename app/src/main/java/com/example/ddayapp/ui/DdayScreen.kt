@@ -43,6 +43,7 @@ fun DdayScreen(
     var showAddDialog by remember { mutableStateOf(false) } // 추가, 편집
     var showSettingsDialog by remember { mutableStateOf(false) } // 설정
     var editingDday by remember { mutableStateOf<DDay?>(null) } // 현재 편집 중인 디데이
+    var initialEditHandled by remember { mutableStateOf(false) }
 
     // 스낵바
     var showSnackbar by remember { mutableStateOf(false) }
@@ -76,11 +77,15 @@ fun DdayScreen(
 
     // 위젯 선택 시 편집 화면 자동 실행 기능
     LaunchedEffect(initialDdayIdToEdit, ddays) {
-        if (initialDdayIdToEdit != null && initialDdayIdToEdit != -1L) {
+        if (!initialEditHandled &&
+            initialDdayIdToEdit != null &&
+            initialDdayIdToEdit != -1L
+        ) {
             val ddayToEdit = ddays.find { it.id == initialDdayIdToEdit }
             if (ddayToEdit != null) {
                 editingDday = ddayToEdit
                 showAddDialog = true
+                initialEditHandled = true
             }
         }
     }

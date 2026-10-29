@@ -148,7 +148,7 @@ class DdayStyle3TransparentWidgetProvider : AppWidgetProvider() {
             try {
                 val appWidgetManager = AppWidgetManager.getInstance(context)
                 val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                    ComponentName(context, DdayStyle1TransparentWidgetProvider::class.java)
+                    ComponentName(context, DdayStyle3TransparentWidgetProvider::class.java)
                 )
                 appWidgetIds.forEach { updateAppWidget(context, appWidgetManager, it) }
             } catch (e: Exception) {

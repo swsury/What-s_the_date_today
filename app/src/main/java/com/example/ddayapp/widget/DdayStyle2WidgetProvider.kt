@@ -127,7 +127,7 @@ class DdayStyle2WidgetProvider : AppWidgetProvider() {
             try {
                 val appWidgetManager = AppWidgetManager.getInstance(context)
                 val appWidgetIds = appWidgetManager.getAppWidgetIds(
-                    ComponentName(context, DdayStyle1WidgetProvider:: class.java)
+                    ComponentName(context, DdayStyle2WidgetProvider::class.java)
                 )
                 appWidgetIds.forEach { updateAppWidget(context, appWidgetManager, it) }
             } catch (e: Exception) {
